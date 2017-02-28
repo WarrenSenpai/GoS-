@@ -106,18 +106,18 @@ Callback.add('Tick', function()
           local qMinion = GetFarmTarget(Q.Range:Value())
           if qMinion then
             local qMinPos = qMinion:GetPrediction(Q.Speed, Q.Delay)
-            control.CastSpell(HK_Q), qMinPos)
+            control.CastSpell(HK_Q, qMinPos)
           end 
         end
       end
     end
+  end)
     
-    OnLoad
+    --OnLoad
     Callback.Add('Load',function()
         PrintChat("Warrens Ziggs - Loaded")
-      end
-    end
-  end
+      end)
+    
    
    function isReady(slot)
      return (myHero:GetSpellData(slot).currentCd == 0) and (GetSpellData(spellSlot).mana < myHero.mana) and (myHero:GetSpellData(slot).level >= 1)
