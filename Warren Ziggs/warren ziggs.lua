@@ -4,10 +4,9 @@ require "DamageLib"
 
 -- Spells
 
-Q = {Delay = 0.05, Range = 1400, Radius = 180, Speed = 1700, Collision = true}
-W = {Delay = 0.05, Range = 1000, Radius = 325, Speed = 1700, Collision = false}
-E = {Delay = 0.05, Range = 900, Radius = 325, Speed = 1700, Collision = false}
-R = {Delay = 0.05, Range = 5300, Radius = 550, Speed = math.huge, Collision = false}
+Q = {Delay = 0, Range = 1400, Radius = 180, Speed = 1700, Collision = true}
+W = {Delay = 0, Range = 1000, Radius = 325, Speed = 1700, Collision = false}
+E = {Delay = 0, Range = 900, Radius = 325, Speed = 1700, Collision = false}
 
 -- Menu
 
@@ -17,7 +16,7 @@ Menu = MenuElement({type = MENU, id = "Ziggs", name = "Warren - WarrenZiggs", le
 
 Menu:MenuElement({type = MENU, id = "Key", name = "Key Settings"})
 Menu.Key:MenuElement({id = "ComboKey", name = "Combo Key", key = 32})
-Menu.Key:MenuElement({id = "HarassKey", name = "Harass Key", key = 67})
+Menu.Key:MenuElement({id = "HarrasKey", name = "Harass Key", key = 67})
 Menu.Key:MenuElement({id = "FarmKey", name = "Farm Key", key = 86})
 Menu.Key:MenuElement({id = "LastHitKey", name = "Last Hit Key", key = 88})
 
@@ -27,17 +26,22 @@ Menu.Combo:MenuElement({id = "ComboQ", name = "Use Q", value = true})
 Menu.Combo:MenuElement({id = "ComboW", name = "Use W", value = true})
 Menu.Combo:MenuElement({id = "ComboE", name = "Use E", value = true})
 
--- [[Harass]]
+-- [[Harrass]]
 Menu:MenuElement({type = MENU, id = "Harass", name = "Harass Settings"})
 Menu.Harass:MenuElement({id = "HarassQ", name = "Use Q", value = true})
 Menu.Harass:MenuElement({id = "HarassW", name = "Use W", value = true})
-Menu.Harass:MenuElement({id = "HarassE", name = "Use E", value = true})
+Menu.Harras:MenuElement({id = "HarrassE", name = "Use E", value = true})
 
 -- [[Farm]]
 Menu:MenuElement({type = MENU, id = "Farm", name = "Farm Settings"})
 Menu.Farm:MenuElement({id = "FarmSpells", name = "Farm Spells", value = true})
 Menu.Farm:MenuElement({id = "FarmQ", name = "Use Q", value = true})
 Menu.Farm:MenuElement({id = "FarmE", name = "Use E", value = true})
+
+-- [[Misc]]
+Menu:MenuElement({type = MENU, id = "Misc", name = "Misc Settings"})
+Menu.Misc:MenuElement({id = "MaxRange", name = "Max Range Limiter", value = 0.9, min = 0.5, max = 1, step = 0.01})
+Menu.Misc:MenuElement({type = SPACE, id = "ToolTip", name = "eg. X = 0.80 (Q.Range = (1400 * 0.80) = 1120)"})
 
 
 
@@ -71,14 +75,14 @@ Callback.add('Tick', function()
     
     if Menu.Key.Combokey:Value() then
       if isReady(_Q) and Menu.Combo.ComboQ:value() then
-        local qTarget = GetTarget(Q.Range:value())
+        local qTarget = GetTarget(Q.Range * Menu.Misc.MaxRange:Value())
         if qTarget and qTarget:GetCollision(Q.Radius, Q.Speed, Q.Delay) == 0 then
           local qPos = qTarget:GetPrediction(Q.Speed, Q.Delay)
           Control.CastSpell(HK_Q, qPos)
         end
       end
       if isReady(_W) and Menu.Combo.ComboW:Value() then
-        local wTarget = GetTarget(W.Range:Value())
+        local wTarget = GetTarget(W.Range * Menu.Misc.MaxRange:Value())
         if wTarget then 
           local wPos = Target:GetPrediction(W.Speed, W.Delay)
           Control.CastSpell(HK_W, wPos)
