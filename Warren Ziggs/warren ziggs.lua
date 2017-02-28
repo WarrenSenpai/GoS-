@@ -73,7 +73,7 @@ end
 
 Callback.Add('Tick', function()
     
-    if Menu.Key.Combokey:Value() then
+    if Menu.Key.ComboKey:Value() then
       if isReady(_Q) and Menu.Combo.ComboQ:value() then
         local qTarget = GetTarget(Q.Range * Menu.Misc.MaxRange:Value())
         if qTarget and qTarget:GetCollision(Q.Radius, Q.Speed, Q.Delay) == 0 then
