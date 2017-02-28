@@ -44,12 +44,10 @@ Menu.Misc:MenuElement({id = "MaxRange", name = "Max Range Limiter", value = 0.9,
 Menu.Misc:MenuElement({type = SPACE, id = "ToolTip", name = "eg. X = 0.80 (Q.Range = (1400 * 0.80) = 1120)"})
 
 -- [[Spell Data]]
---local qSpellData = myHero:GetSpellData(_Q);
---local wSpellData = myHero:GetSpellData(_W);
---local eSpellData = myHero:GetSpellData(_E);
--- 
---
-
+local qSpellData = myHero:GetSpellData(_Q);
+local wSpellData = myHero:GetSpellData(_W);
+local eSpellData = myHero:GetSpellData(_E);
+ 
 -- GetTarget - Returns target
 function GetTarget(targetRange)
   local result 
