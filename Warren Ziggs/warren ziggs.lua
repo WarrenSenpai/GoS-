@@ -78,7 +78,7 @@ function GetFarmTarget(minionRange)
 end
 
 
-Callback.Add('Tick', function())
+Callback.Add('Tick', function()
     
     if Menu.Key.ComboKey:Value() then
       if isReady(_Q) and Menu.Combo.ComboQ:Value() then
@@ -102,6 +102,7 @@ Callback.Add('Tick', function())
           Control.CastSpell(HK_E, ePos)
         end
       end
+	  end -- End of SpaceBar Rotation
       
       
       if Menu.Key.HarassKey:Value() then
@@ -137,7 +138,10 @@ Callback.Add('Tick', function())
           end 
         end
       end
-    end
+    --end Old SpaceBar
+	
+	end
+	
   end)
     
     
@@ -153,4 +157,3 @@ Callback.Add('Tick', function())
    function isValidTarget(obj, spellRange)
      return obj ~= nil and obj.valid and obj.visible and not obj.dead and obj.isTargetable and obj.distance <= spellRange
    end
-   
