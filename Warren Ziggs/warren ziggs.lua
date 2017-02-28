@@ -102,16 +102,6 @@ Callback.add('Tick', function()
           end
         end
       end
-      if Menu.Key.FarmKey:Value() then
-        if isReady(_Q) and Menu.Farm.FarmQ:Value() then
-          local qMinion = GetFarmTarget(Q.Range:Value())
-          if qMinion then
-            local qMinPos = qMinion:GetPrediction(Q.Speed, Q.Delay)
-            control.CastSpell(HK_Q), qMinPos)
-          end 
-        end
-      end
-    end
     
     OnLoad
     Callback.Add('Load',function()
