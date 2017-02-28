@@ -16,7 +16,7 @@ Menu = MenuElement({type = MENU, id = "Ziggs", name = "Warren - WarrenZiggs", le
 
 Menu:MenuElement({type = MENU, id = "Key", name = "Key Settings"})
 Menu.Key:MenuElement({id = "ComboKey", name = "Combo Key", key = 32})
-Menu.Key:MenuElement({id = "HarasKey", name = "Harass Key", key = 67})
+Menu.Key:MenuElement({id = "HarassKey", name = "Harass Key", key = 67})
 Menu.Key:MenuElement({id = "FarmKey", name = "Farm Key", key = 86})
 Menu.Key:MenuElement({id = "LastHitKey", name = "Last Hit Key", key = 88})
 
