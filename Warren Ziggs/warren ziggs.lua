@@ -65,10 +65,6 @@ function GetFarmTarget(minionRange)
   end
   return getFarmTarget
 end
-
--- [Events]
--- OnUpdate
-Callback.add('Tick', function()
     
     if Menu.Key.Combokey:Value() then
       if isReady(_Q) and Menu.Combo.ComboQ:value() then
