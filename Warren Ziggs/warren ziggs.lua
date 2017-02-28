@@ -10,7 +10,7 @@ E = {Delay = 0, Range = 900, Radius = 325, Speed = 1700, Collision = false}
 
 -- Menu
 
-Menu = MenuElement({type = MENU, id = "Ziggs", name = "WarrenZiggs", lefticon="https://digitumart.files.wordpress.com/2015/07/pepe-angry.jpg"})
+Menu = MenuElement({type = MENU, id = "Ziggs", name = "Warren - WarrenZiggs", lefticon="https://digitumart.files.wordpress.com/2015/07/pepe-angry.jpg"})
 
 -- [[Keys]]
 
@@ -43,6 +43,11 @@ Menu:MenuElement({type = MENU, id = "Misc", name = "Misc Settings"})
 Menu.Misc:MenuElement({id = "MaxRange", name = "Max Range Limiter", value = 0.9, min = 0.5, max = 1, step = 0.01})
 Menu.Misc:MenuElement({type = SPACE, id = "ToolTip", name = "eg. X = 0.80 (Q.Range = (1400 * 0.80) = 1120)"})
 
+--[[Killsteal]]
+Menu.MenuElement({type = MENU, name = "Killsteal", id = "Kill"})
+Menu.Kill:MenuElement({id = "KillR", name = "Use R", value = true})
+
+
 -- [[Spell Data]]
 local qSpellData = myHero:GetSpellData(_Q);
 local wSpellData = myHero:GetSpellData(_W);
@@ -50,19 +55,38 @@ local eSpellData = myHero:GetSpellData(_E);
 local rSpellData = myHero:GetSpellData(_R);
 
 
-
 -- GetTarget - Returns target
 function GetTarget(targetRange)
   local result 
   for i = 1,Game.HeroCount() do
-    local hero = Game.Hero(i)
     if isValidTarget(hero, targetRange) and hero.team ~= myHero.team then 
+    local hero = Game.Hero(i)
       result = hero
-      break 
     end
+      break 
   end
   return result
 end
+
+for i = 1, Game.HeroCount() do
+  local hero = Game.Hero(i);
+  if hero and hero.valid and hero.isEnemy and hero.visible then
+    if hero.distance <= rSpellData.range then
+      local spellDmg = getdmg("R", hero, myHero);
+      if spellDmg > hero.health then
+        
+        if Menu.Kill.KillR:Value() then
+          if (rSpellData.currentCd == 0) and (rSpellData.level > 0) then
+            Control.CastSpell(HK_R, hero)
+          end
+        end
+      end
+    end
+    
+          
+
+
+
 
 function GetFarmTarget(minionRange)
   local getFarmTarget
@@ -70,17 +94,17 @@ function GetFarmTarget(minionRange)
     local minion = Game.Minion(j)
     if isValidTarget(minion, minionRange) and minion.team ~= myHero.team then
       getFarmTarget = minion 
-      break
+    break
     end
   end
   return getFarmTarget
 end
 
 
-Callback.Add('Tick', function()
+Callback.add('Tick', function()
     
-    if Menu.Key.ComboKey:Value() then
-      if isReady(_Q) and Menu.Combo.ComboQ:Value() then
+    if Menu.Key.Combokey:Value() then
+      if isReady(_Q) and Menu.Combo.ComboQ:value() then
         local qTarget = GetTarget(Q.Range * Menu.Misc.MaxRange:Value())
         if qTarget and qTarget:GetCollision(Q.Radius, Q.Speed, Q.Delay) == 0 then
           local qPos = qTarget:GetPrediction(Q.Speed, Q.Delay)
@@ -90,13 +114,21 @@ Callback.Add('Tick', function()
       if isReady(_W) and Menu.Combo.ComboW:Value() then
         local wTarget = GetTarget(W.Range * Menu.Misc.MaxRange:Value())
         if wTarget then 
-          local wPos = wTarget:GetPrediction(W.Speed, W.Delay)
+          local wPos = Target:GetPrediction(W.Speed, W.Delay)
           Control.CastSpell(HK_W, wPos)
         end
       end
+      if isReady(_E) and Menu.Combo.ComboE:Value() then
+        local eTarget = GetTarget(E.Range * Menu.Misc.MaxRange:Value())
+        if eTarget then
+          local ePos = Target:GetPrediction(E.Speed, E.Delay)
+          Control.CastSpell(HK_E, ePos)
+        end
+      end
+      
       
       if Menu.Key.HarassKey:Value() then
-        if isReady(_Q) and Menu.Harass.HarassQ:Value() then
+        if isReady(_Q) and Menu.Harass.HarassQ:value() then
           local qTarget = GetTarget(Q.Range:Value())
           if qTarget and qTarget:GetCollision(Q.Radius, Q.Speed, Q.Delay) == 0 then
             local qPos = qTarget:GetPrediction(Q.Speed, Q.Delay) 
@@ -108,9 +140,17 @@ Callback.Add('Tick', function()
           if wTarget then
             local wPos = wTarget:GetPrediction(W.Speed, W.Delay)
             Control.CastSpell(HK_W, wPos)
-          end
         end
       end
+      if isReady(_E) and Menu.Harass.HarassE:Value() then
+        local eTarget = GetTarget(E.Range:Value())
+        if eTarget then 
+          local ePos = eTarget:GetPrediction(E.Speed, E.Delay)
+          Control.CastSpell(HK_E, ePos)
+        end
+      end
+    end
+    
       if Menu.Key.FarmKey:Value() then
         if isReady(_Q) and Menu.Farm.FarmQ:Value() then
           local qMinion = GetFarmTarget(Q.Range:Value())
@@ -123,17 +163,18 @@ Callback.Add('Tick', function()
     end
   end)
     
-    --OnLoad
+    
     Callback.Add('Load',function()
         PrintChat("Warrens Ziggs - Loaded")
       end)
     
    
-function isReady(slot)
-	return (myHero:GetSpellData(slot).currentCd == 0) and (myHero:GetSpellData(spellSlot).mana < myHero.mana) and (myHero:GetSpellData(slot).level >= 1)
+   function isReady(slot)
+     return (myHero:GetSpellData(slot).currentCd == 0) and (GetSpellData(spellSlot).mana < myHero.mana) and (myHero:GetSpellData(slot).level >= 1)
    end
    
    function isValidTarget(obj, spellRange)
      return obj ~= nil and obj.valid and obj.visible and not obj.dead and obj.isTargetable and obj.distance <= spellRange
    end
-   
+ end
+end
