@@ -1,6 +1,6 @@
 if myHero.charName ~= "Ziggs" then return end
 
-require "DamgeLib"
+require "DamageLib"
 
 -- Spells
 
@@ -44,7 +44,7 @@ Menu.Farm:MenuElement({id = "FarmE", name = "Use E", value = true})
 -- GetTarget - Returns target
 function GetTarget(targetRange)
   local result 
-  for i = 1, Game.HeroCount() do
+  for i = 1,Game.HeroCount() do
     local hero = Game.Hero(i)
     if isValidTarget(hero, targetRange) and hero.team ~= myHero.team then 
       result = hero
@@ -65,6 +65,9 @@ function GetFarmTarget(minionRange)
   end
   return getFarmTarget
 end
+
+
+Callback.add('Tick', function()
     
     if Menu.Key.Combokey:Value() then
       if isReady(_Q) and Menu.Combo.ComboQ:value() then
@@ -98,7 +101,24 @@ end
           end
         end
       end
+      if Menu.Key.FarmKey:Value() then
+        if isReady(_Q) and Menu.Farm.FarmQ:Value() then
+          local qMinion = GetFarmTarget(Q.Range:Value())
+          if qMinion then
+            local qMinPos = qMinion:GetPrediction(Q.Speed, Q.Delay)
+            control.CastSpell(HK_Q), qMinPos)
+          end 
+        end
+      end
+    end
     
+    OnLoad
+    Callback.Add('Load',function()
+        PrintChat("Warrens Ziggs - Loaded")
+      end
+    end
+  end
+   
    function isReady(slot)
      return (myHero:GetSpellData(slot).currentCd == 0) and (GetSpellData(spellSlot).mana < myHero.mana) and (myHero:GetSpellData(slot).level >= 1)
    end
