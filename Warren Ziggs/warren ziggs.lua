@@ -81,7 +81,7 @@ end
 Callback.Add('Tick', function()
     
     if Menu.Key.ComboKey:Value() then
-      if isReady(_Q) and Menu.Combo.ComboQ:value() then
+      if isReady(_Q) and Menu.Combo.ComboQ:Value() then
         local qTarget = GetTarget(Q.Range * Menu.Misc.MaxRange:Value())
         if qTarget and qTarget:GetCollision(Q.Radius, Q.Speed, Q.Delay) == 0 then
           local qPos = qTarget:GetPrediction(Q.Speed, Q.Delay)
@@ -105,7 +105,7 @@ Callback.Add('Tick', function()
       
       
       if Menu.Key.HarassKey:Value() then
-        if isReady(_Q) and Menu.Harass.HarassQ:value() then
+        if isReady(_Q) and Menu.Harass.HarassQ:Value() then
           local qTarget = GetTarget(Q.Range:Value())
           if qTarget and qTarget:GetCollision(Q.Radius, Q.Speed, Q.Delay) == 0 then
             local qPos = qTarget:GetPrediction(Q.Speed, Q.Delay) 
