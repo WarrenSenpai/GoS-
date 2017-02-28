@@ -150,7 +150,7 @@ Callback.Add('Tick', function()
     
    
    function isReady(slot)
-     return (myHero:GetSpellData(slot).currentCd == 0) and (myHero:GetSpellData(slot).mana < myHero.mana) and (myHero:GetSpellData(slot).level >= 1)
+     return (myHero:GetSpellData(slot).currentCd == 0) and (myHero:GetSpellData(spellSlot).mana < myHero.mana) and (myHero:GetSpellData(slot).level >= 1)
    end
    
    function isValidTarget(obj, spellRange)
