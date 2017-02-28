@@ -44,7 +44,7 @@ Menu.Farm:MenuElement({id = "FarmE", name = "Use E", value = true})
 -- GetTarget - Returns target
 function GetTarget(targetRange)
   local result 
-  for i = 1,Game.HeroCount() do
+  for i = 1, Game.HeroCount() do
     local hero = Game.Hero(i)
     if isValidTarget(hero, targetRange) and hero.team ~= myHero.team then 
       result = hero
@@ -56,7 +56,7 @@ end
 
 function GetFarmTarget(minionRange)
   local getFarmTarget
-  for j = 1,Game.MinionCount() do
+  for j = 1, Game.MinionCount() do
     local minion = Game.Minion(j)
     if isValidTarget(minion, minionRange) and minion.team ~= myHero.team then
       getFarmTarget = minion 
@@ -114,7 +114,7 @@ Callback.add('Tick', function()
     end
     
     OnLoad
-    Callback.Add('Load',function()
+    Callback.Add('Load', function()
         PrintChat("Warrens Ziggs - Loaded")
       end
     end
