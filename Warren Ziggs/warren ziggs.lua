@@ -103,13 +103,6 @@ Callback.add('Tick', function()
         end
       end
     
-    --OnLoad
-    Callback.Add('Load',function())
-        PrintChat("Warrens Ziggs - Loaded")
-      end
-    end
-  end
-   
    function isReady(slot)
      return (myHero:GetSpellData(slot).currentCd == 0) and (GetSpellData(spellSlot).mana < myHero.mana) and (myHero:GetSpellData(slot).level >= 1)
    end
