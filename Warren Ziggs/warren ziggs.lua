@@ -6,7 +6,7 @@ require "DamgeLib"
 
 Q = {Delay = 0.05, Range = 1400, Radius = 180, Speed = 1700, Collision = true}
 W = {Delay = 0.05, Range = 1000, Radius = 325, Speed = 1700, Collision = false}
-E = [Delay = 0.05, Range = 900, Radius = 325, Speed = 1700, Collision = false}
+E = {Delay = 0.05, Range = 900, Radius = 325, Speed = 1700, Collision = false}
 R = {Delay = 0.05, Range = 5300, Radius = 550, Speed = math.huge, Collision = false}
 
 -- Menu
