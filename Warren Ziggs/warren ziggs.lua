@@ -17,7 +17,7 @@ Menu = MenuElement({type = MENU, id = "Ziggs", name = "Warren - WarrenZiggs", le
 
 Menu:MenuElement({type = MENU, id = "Key", name = "Key Settings"})
 Menu.Key:MenuElement({id = "ComboKey", name = "Combo Key", key = 32})
-Menu.Key:MenuElement({id = "HarrasKey", name = "Harass Key", key = 67})
+Menu.Key:MenuElement({id = "HarassKey", name = "Harass Key", key = 67})
 Menu.Key:MenuElement({id = "FarmKey", name = "Farm Key", key = 86})
 Menu.Key:MenuElement({id = "LastHitKey", name = "Last Hit Key", key = 88})
 
@@ -27,11 +27,11 @@ Menu.Combo:MenuElement({id = "ComboQ", name = "Use Q", value = true})
 Menu.Combo:MenuElement({id = "ComboW", name = "Use W", value = true})
 Menu.Combo:MenuElement({id = "ComboE", name = "Use E", value = true})
 
--- [[Harrass]]
+-- [[Harass]]
 Menu:MenuElement({type = MENU, id = "Harass", name = "Harass Settings"})
 Menu.Harass:MenuElement({id = "HarassQ", name = "Use Q", value = true})
 Menu.Harass:MenuElement({id = "HarassW", name = "Use W", value = true})
-Menu.Harras:MenuElement({id = "HarrassE", name = "Use E", value = true})
+Menu.Harras:MenuElement({id = "HarassE", name = "Use E", value = true})
 
 -- [[Farm]]
 Menu:MenuElement({type = MENU, id = "Farm", name = "Farm Settings"})
