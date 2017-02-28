@@ -47,7 +47,8 @@ Menu.Misc:MenuElement({type = SPACE, id = "ToolTip", name = "eg. X = 0.80 (Q.Ran
 --local qSpellData = myHero:GetSpellData(_Q);
 --local wSpellData = myHero:GetSpellData(_W);
 --local eSpellData = myHero:GetSpellData(_E);
-
+-- 
+--
 
 -- GetTarget - Returns target
 function GetTarget(targetRange)
