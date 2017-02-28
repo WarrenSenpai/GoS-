@@ -44,7 +44,6 @@ Menu.Misc:MenuElement({id = "MaxRange", name = "Max Range Limiter", value = 0.9,
 Menu.Misc:MenuElement({type = SPACE, id = "ToolTip", name = "eg. X = 0.80 (Q.Range = (1400 * 0.80) = 1120)"})
 
 --[[Killsteal]]
-Menu.MenuElement({type = MENU, name = "Killsteal", id = "Kill"})
 Menu.Kill:MenuElement({id = "KillR", name = "Use R", value = true})
 
 
@@ -68,22 +67,6 @@ function GetTarget(targetRange)
   return result
 end
 
-for i = 1, Game.HeroCount() do
-  local hero = Game.Hero(i);
-  if hero and hero.valid and hero.isEnemy and hero.visible then
-    if hero.distance <= rSpellData.range then
-      local spellDmg = getdmg("R", hero, myHero);
-      if spellDmg > hero.health then
-        
-        if Menu.Kill.KillR:Value() then
-          if (rSpellData.currentCd == 0) and (rSpellData.level > 0) then
-            Control.CastSpell(HK_R, hero)
-          end
-        end
-      end
-    end
-    
-          
 
 
 
@@ -176,5 +159,4 @@ Callback.add('Tick', function()
    function isValidTarget(obj, spellRange)
      return obj ~= nil and obj.valid and obj.visible and not obj.dead and obj.isTargetable and obj.distance <= spellRange
    end
- end
-end
+   
