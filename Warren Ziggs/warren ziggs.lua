@@ -90,7 +90,7 @@ Callback.Add('Tick', function()
       if isReady(_W) and Menu.Combo.ComboW:Value() then
         local wTarget = GetTarget(W.Range * Menu.Misc.MaxRange:Value())
         if wTarget then 
-          local wPos = Target:GetPrediction(W.Speed, W.Delay)
+          local wPos = wTarget:GetPrediction(W.Speed, W.Delay)
           Control.CastSpell(HK_W, wPos)
         end
       end
