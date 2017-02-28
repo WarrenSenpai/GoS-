@@ -10,7 +10,7 @@ E = {Delay = 0, Range = 900, Radius = 325, Speed = 1700, Collision = false}
 
 -- Menu
 
-Menu = MenuElement({type = MENU, id = "Ziggs", name = "Warren - WarrenZiggs", lefticon="https://digitumart.files.wordpress.com/2015/07/pepe-angry.jpg"})
+Menu = MenuElement({type = MENU, id = "Ziggs", name = "WarrenZiggs", lefticon="https://digitumart.files.wordpress.com/2015/07/pepe-angry.jpg"})
 
 -- [[Keys]]
 
