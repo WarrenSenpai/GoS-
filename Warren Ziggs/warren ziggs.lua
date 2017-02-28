@@ -103,8 +103,8 @@ Callback.add('Tick', function()
         end
       end
     
-    OnLoad
-    Callback.Add('Load',function()
+    --OnLoad
+    Callback.Add('Load',function())
         PrintChat("Warrens Ziggs - Loaded")
       end
     end
