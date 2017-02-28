@@ -31,7 +31,7 @@ Menu.Combo:MenuElement({id = "ComboE", name = "Use E", value = true})
 Menu:MenuElement({type = MENU, id = "Harass", name = "Harass Settings"})
 Menu.Harass:MenuElement({id = "HarassQ", name = "Use Q", value = true})
 Menu.Harass:MenuElement({id = "HarassW", name = "Use W", value = true})
-Menu.Harras:MenuElement({id = "HarassE", name = "Use E", value = true})
+Menu.Harass:MenuElement({id = "HarassE", name = "Use E", value = true})
 
 -- [[Farm]]
 Menu:MenuElement({type = MENU, id = "Farm", name = "Farm Settings"})
