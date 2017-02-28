@@ -140,7 +140,6 @@ Callback.Add('Tick', function()
       end
     --end Old SpaceBar
 	
-	end
 	
   end)
     
