@@ -43,10 +43,6 @@ Menu:MenuElement({type = MENU, id = "Misc", name = "Misc Settings"})
 Menu.Misc:MenuElement({id = "MaxRange", name = "Max Range Limiter", value = 0.9, min = 0.5, max = 1, step = 0.01})
 Menu.Misc:MenuElement({type = SPACE, id = "ToolTip", name = "eg. X = 0.80 (Q.Range = (1400 * 0.80) = 1120)"})
 
---[[Killsteal]]
-Menu.Kill:MenuElement({id = "KillR", name = "Use R", value = true})
-
-
 -- [[Spell Data]]
 local qSpellData = myHero:GetSpellData(_Q);
 local wSpellData = myHero:GetSpellData(_W);
