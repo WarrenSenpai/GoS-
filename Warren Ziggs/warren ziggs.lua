@@ -138,8 +138,7 @@ Callback.Add('Tick', function()
         end
       end
     end
-  end
- end)
+  end)
     
     
     Callback.Add('Load',function()
